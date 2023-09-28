@@ -839,6 +839,13 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 $settings['config_sync_directory'] = '../config/default';
 
 /**
+ * Load local development override configuration.
+ */
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
+
+/**
  * Include the Pantheon-specific settings file.
  *
  * n.b. The settings.pantheon.php file makes some changes
@@ -848,10 +855,3 @@ $settings['config_sync_directory'] = '../config/default';
  *      the site settings remain consistent.
  */
 include __DIR__ . "/settings.pantheon.php";
-
-/**
- * Load local development override configuration.
- */
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-  include $app_root . '/' . $site_path . '/settings.local.php';
-}
