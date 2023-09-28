@@ -11,10 +11,15 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "path",
+            "url": "upstream-configuration"
         }
     ],
     "require": {
         "php": ">=8.1",
+        "pantheon-upstreams/upstream-configuration": "dev-main",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal/admin_toolbar": "^3.1",
@@ -78,7 +83,8 @@
         "drupal/devel": "^4.1",
         "drupal/stage_file_proxy": "^1.1",
         "drupal/upgrade_status": "^3.11",
-        "drupal/upgrade_rector": "^1.0@alpha"
+        "drupal/upgrade_rector": "^1.0@alpha",
+        "drupal/core-dev": "^9.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -87,10 +93,15 @@
     "prefer-stable": true,
     "config": {
         "sort-packages": true,
+        "platform": {
+            "php": "8.1.13"
+        },
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true,
             "zaporylie/composer-drupal-optimizations": true,
             "oomphinc/composer-installers-extender": true
         },
@@ -107,6 +118,7 @@
         "patchLevel": {
             "drupal/core": "-p2"
         },
+        "enable-patching": true,
         "installer-types": [
             "npm-asset",
             "bower-asset"
@@ -131,16 +143,19 @@
             ],
             "web/profiles/contrib/{$name}": [
                 "type:drupal-profile"
-            ]
+            ],
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"],
+            "web/private/scripts/quicksilver/{$name}/": ["type:quicksilver-script"]
         },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
             },
             "source": "https://git.drupalcode.org/project/drupal/raw/{version}/{path}",
-            "allowed-packages": [
-                "fourkitchens/sous-drupal-distro"
-            ],
+            "allowed-packages": ["pantheon-systems/drupal-integrations"],
             "excludes": [
                 ".eslintrc"
             ],
@@ -148,6 +163,9 @@
                 "sites/default/example.settings.my.php"
             ],
             "file-mapping": {
+                "[web-root]/.editorconfig": false,
+                "[web-root]/pantheon.upstream.yml": false,
+                "[web-root]/.gitattributes": false,
                 "[web-root]/sites/example.settings.local.php": {
                     "append": "assets/scaffold/files/additions-example.settings.local.txt"
                 },
@@ -170,6 +188,8 @@
         }
     },
     "scripts": {
+        "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
+        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"],
         "post-create-project-cmd": [
             "Sous\\Starter::sousPrep",
             "./scripts/sous/setup.sh"
