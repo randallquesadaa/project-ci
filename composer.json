@@ -188,8 +188,6 @@
         }
     },
     "scripts": {
-        "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
-        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"],
         "post-create-project-cmd": [
             "Sous\\Starter::sousPrep",
             "./scripts/sous/setup.sh"
@@ -214,6 +212,8 @@
         ],
         "post-drupal-scaffold-cmd": [
             "cp web/sites/example.settings.local.php web/sites/default/settings.local.php"
-        ]
+        ],
+        "pre-update-cmd": ["DrupalComposerManaged\\ComposerScripts::preUpdate"],
+        "post-update-cmd": ["DrupalComposerManaged\\ComposerScripts::postUpdate"]
     }
 }
