@@ -1,0 +1,20 @@
+uuid: 72b8b21a-d04e-43a7-a439-a27dfb6744c1
+langcode: en
+status: false
+dependencies: {  }
+id: dev
+label: Dev
+description: ''
+weight: 0
+stackable: false
+storage: folder
+folder: ../config/split/dev
+module:
+  devel: 0
+  field_ui: 0
+theme: {  }
+complete_list:
+  - core.extension
+  - system.menu.devel
+partial_list:
+  - core.extension

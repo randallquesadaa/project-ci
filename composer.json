@@ -19,7 +19,6 @@
     ],
     "require": {
         "php": ">=8.1",
-        "pantheon-upstreams/upstream-configuration": "dev-main",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal/admin_toolbar": "^3.1",
@@ -28,6 +27,7 @@
         "drupal/ckeditor_browser_context_menu": "^1.2",
         "drupal/components": "^3.0@beta",
         "drupal/config_direct_save": "^1.0",
+        "drupal/config_split": "^2.0@RC",
         "drupal/content_browser": "^1.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-recommended": "^9",
@@ -74,6 +74,7 @@
         "npm-asset/slick": "^1.12",
         "oomphinc/composer-installers-extender": "^2.0",
         "pantheon-systems/drupal-integrations": "^9.0",
+        "pantheon-upstreams/upstream-configuration": "dev-main",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
