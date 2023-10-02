@@ -27,6 +27,7 @@
         "drupal/ckeditor_browser_context_menu": "^1.2",
         "drupal/components": "^3.0@beta",
         "drupal/config_direct_save": "^1.0",
+        "drupal/config_filter": "^2.4",
         "drupal/config_split": "^2.0@RC",
         "drupal/content_browser": "^1.0",
         "drupal/core-composer-scaffold": "^9",
